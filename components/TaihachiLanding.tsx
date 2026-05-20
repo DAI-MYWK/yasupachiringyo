@@ -36,7 +36,7 @@ const services = [
   {
     title: '薪用の切り分け',
     img: 'service-logs.png',
-    body: '薪ストーブ用の玉切り・薪割りまで、ご希望に合わせて対応します。'
+    body: '薪ストーブ用に寸法を測り、ご希望のサイズに玉切りして対応します。'
   }
 ];
 
@@ -133,7 +133,7 @@ function Hero() {
           </p>
           <h1 className="font-hand text-[44px] font-black leading-[1.18] tracking-[0.02em] text-ink sm:text-[52px] md:text-[54px] lg:text-[58px]">
             この<span className="text-forest-700">木</span>、<br />
-            <span className="brush-underline whitespace-nowrap">どうしたらいいべ。</span>
+            <span className="brush-underline whitespace-nowrap">どうしたらいいだろう。</span>
           </h1>
           <p className="ja-copy mt-6 text-[18px] font-bold leading-relaxed tracking-[0.05em] text-forest-700 sm:text-[20px]">
             山のこと、木のこと、泰八林業にご相談ください。
@@ -332,16 +332,13 @@ function FAQ() {
         <h2 className="section-heading">よくあるご質問</h2>
         <div className="grid gap-3 md:grid-cols-2">
           {faqs.map(([question, answer]) => (
-            <details key={question} className="faq-row rounded-[12px] border border-[#dfd0b5] bg-[#fffaf1] px-4 py-3 shadow-card">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[14px] font-black text-ink">
-                <span>
-                  <span className="mr-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-forest-700 text-[13px] text-white">Q</span>
-                  {question}
-                </span>
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#cbb894] text-forest-700">+</span>
-              </summary>
+            <article key={question} className="rounded-[12px] border border-[#dfd0b5] bg-[#fffaf1] px-4 py-3 shadow-card">
+              <h3 className="flex items-start gap-2 text-[14px] font-black leading-relaxed text-ink">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-700 text-[13px] leading-none text-white">Q</span>
+                <span>{question}</span>
+              </h3>
               <p className="ja-copy mt-3 border-t border-[#eadfc8] pt-3 text-[13px] font-semibold leading-[1.8] text-ink/75">{answer}</p>
-            </details>
+            </article>
           ))}
         </div>
       </div>
