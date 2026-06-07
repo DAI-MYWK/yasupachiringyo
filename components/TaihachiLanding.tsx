@@ -1,5 +1,6 @@
 const asset = (name: string) => `/assets/illustrations/${name}`;
 const generatedAsset = (name: string) => `/assets/generated/${name}`;
+const photo = (name: string) => `/assets/photos/${name}`;
 
 const navItems = [
   { label: '私たちについて', href: '#about' },
@@ -66,11 +67,10 @@ const voices = [
 ];
 
 const works = [
-  { img: 'work-forest.png', label: '山の間伐・整備', place: '奥州市' },
-  { img: 'service-fruit.png', label: '果樹木の伐採', place: '平泉町' },
-  { img: 'service-danger.png', label: '危険木の撤去', place: '一関市' },
-  { img: 'service-logs.png', label: '薪用の切り分け', place: '金ケ崎町' },
-  { img: 'work-clearing.png', label: '山林の下草刈り', place: '住田町' }
+  { img: 'work-forest.png', label: '山の間伐・整備', place: '奥州市', isPhoto: false },
+  { img: 'service-fruit.png', label: '果樹木の伐採', place: '平泉町', isPhoto: false },
+  { img: 'service-danger.png', label: '危険木の撤去', place: '一関市', isPhoto: false },
+  { img: 'service-logs.png', label: '薪用の切り分け', place: '金ケ崎町', isPhoto: false },
 ];
 
 const faqs = [
@@ -125,43 +125,45 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden soft-paper-bg py-10 sm:py-14">
-      <div className="lp-container relative grid items-center gap-8 md:grid-cols-[1fr_1fr]">
-        <div className="relative z-10">
-          <p className="mb-4 inline-flex rounded-full bg-[#f1e0bf] px-4 py-2 text-[14px] font-bold tracking-[0.08em] text-bark-700">
-            岩手県南 地域密着
-          </p>
-          <h1 className="font-hand text-[44px] font-black leading-[1.18] tracking-[0.02em] text-ink sm:text-[52px] md:text-[54px] lg:text-[58px]">
-            この<span className="text-forest-700">木</span>、<br />
-            <span className="brush-underline whitespace-nowrap">どうしたらいいだろう。</span>
-          </h1>
-          <p className="ja-copy mt-6 text-[18px] font-bold leading-relaxed tracking-[0.05em] text-forest-700 sm:text-[20px]">
-            山のこと、木のこと、泰八林業にご相談ください。
-          </p>
-          <p className="ja-copy mt-4 max-w-[430px] text-[15px] font-semibold leading-[2] text-ink/85">
-            岩手県南地域を中心に、山の管理から果樹木の伐採、危険木の撤去、薪用の切り分けまで、地域に根ざした林業サービスを行っています。
-          </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a href="tel:09063897137" className="cta-green text-center">
-              <span className="block text-[13px] font-bold">お電話でのご相談はこちら</span>
-              <span className="block whitespace-nowrap text-[26px] font-black leading-tight tracking-[0.03em]">090-6389-7137</span>
-            </a>
-            <a href="#contact" className="cta-cream text-center font-bold">
-              <span className="block text-[14px] text-bark-700">相談・見積り</span>
-              <span className="block text-[22px] text-forest-700">無料</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="relative min-h-[300px] md:min-h-[420px]">
-          <div className="absolute right-0 top-0 hidden h-28 w-28 rounded-full border border-forest-700/50 bg-[#fffaf0]/80 p-4 text-center font-bold leading-relaxed text-forest-700 shadow-card md:flex md:items-center md:justify-center">
-            まずは<br />お気軽に<br />ご相談ください
-          </div>
+    <section id="top" className="soft-paper-bg py-8 sm:py-10">
+      <div className="lp-container">
+        <div className="relative overflow-hidden rounded-[20px]">
+          {/* 背景写真 */}
           <img
-            src={generatedAsset('hero-forestry.png')}
-            alt="木の前でチェーンソーを構える林業スタッフの手描き風イラスト"
-            className="ml-auto mt-0 h-auto w-full max-w-[560px] rounded-[22px] border border-[#eadcc2] object-contain shadow-soft"
+            src={photo('hero.png')}
+            alt="山の伐採作業をする林業スタッフの写真"
+            className="absolute inset-0 h-full w-full object-cover object-center"
           />
+          {/* 左側グラデーションオーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d2a1a]/92 via-[#0d2a1a]/75 to-[#0d2a1a]/30" />
+
+          <div className="relative z-10 px-8 py-12 sm:px-12 sm:py-16 md:py-20">
+            <div className="max-w-[680px] rounded-[16px] bg-[#0d2a1a]/50 p-6 backdrop-blur-sm">
+              <p className="mb-4 inline-flex rounded-full bg-white/20 px-4 py-2 text-[14px] font-bold tracking-[0.08em] text-white">
+                岩手県南 地域密着
+              </p>
+              <h1 className="font-hand text-[44px] font-black leading-[1.18] tracking-[0.02em] text-white drop-shadow-lg sm:text-[52px] md:text-[54px] lg:text-[58px]">
+                この<span className="text-[#7be0a8]">木</span>、<br />
+                <span className="whitespace-nowrap underline decoration-[#7be0a8] decoration-[3px] underline-offset-4">どうしたらいいだろう。</span>
+              </h1>
+              <p className="ja-copy mt-6 text-[18px] font-bold leading-relaxed tracking-[0.05em] text-[#b8f0d0] drop-shadow sm:text-[20px]">
+                山のこと、木のこと、泰八林業にご相談ください。
+              </p>
+              <p className="ja-copy mt-4 max-w-[430px] text-[15px] font-semibold leading-[2] text-white/85 drop-shadow">
+                岩手県南地域を中心に、山の管理から果樹木の伐採、危険木の撤去、薪用の切り分けまで、地域に根ざした林業サービスを行っています。
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <a href="tel:09063897137" className="cta-green text-center">
+                  <span className="block text-[13px] font-bold">お電話でのご相談はこちら</span>
+                  <span className="block whitespace-nowrap text-[26px] font-black leading-tight tracking-[0.03em]">090-6389-7137</span>
+                </a>
+                <a href="#contact" className="rounded-[9999px] border-2 border-white/60 bg-white/15 px-6 py-3 text-center font-bold text-white backdrop-blur-sm transition hover:bg-white/25">
+                  <span className="block text-[14px] text-white/80">相談・見積り</span>
+                  <span className="block text-[22px]">無料</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -286,7 +288,7 @@ function Voices() {
         <h2 className="section-heading">お客様の声</h2>
         <div className="grid gap-4 md:grid-cols-3">
           {voices.map((voice) => (
-            <article key={voice.meta} className="paper-card p-4">
+            <article key={voice.meta} className="paper-card px-6 py-7">
               <p className="ja-copy text-[14px] font-semibold leading-[1.85] text-ink/85">{voice.text}</p>
               <p className="mt-3 text-right text-[13px] font-black text-forest-700">{voice.meta}</p>
             </article>
@@ -307,7 +309,26 @@ function Works() {
             他の事例もご覧ください
           </a>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+
+        {/* Before / After 実写真 */}
+        <div className="mb-6 overflow-hidden rounded-[16px] border border-[#dfd0b5] bg-white shadow-card">
+          <div className="grid sm:grid-cols-2">
+            <div className="relative overflow-hidden">
+              <img src={photo('before-work.jpg')} alt="草木・低木の整理 施工前" className="h-[220px] w-full object-cover sm:h-[260px]" />
+              <span className="absolute bottom-3 left-3 rounded-full bg-[#6b8f5e]/90 px-3 py-1 text-[13px] font-black text-white">Before</span>
+            </div>
+            <div className="relative overflow-hidden">
+              <img src={photo('after-work.jpg')} alt="草木・低木の整理 施工後" className="h-[220px] w-full object-cover sm:h-[260px]" />
+              <span className="absolute bottom-3 left-3 rounded-full bg-forest-700/90 px-3 py-1 text-[13px] font-black text-white">After</span>
+            </div>
+          </div>
+          <div className="px-4 py-3 text-center">
+            <p className="text-[14px] font-black text-ink">草木・低木の整理</p>
+            <p className="text-[12px] font-semibold text-ink/60">道路沿いの植栽管理</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {works.map((work) => (
             <article key={`${work.label}${work.place}`} className="group overflow-hidden rounded-[14px] border border-[#dfd0b5] bg-white shadow-card">
               <div className="overflow-hidden bg-[#fffaf1]">
@@ -332,7 +353,7 @@ function FAQ() {
         <h2 className="section-heading">よくあるご質問</h2>
         <div className="grid gap-3 md:grid-cols-2">
           {faqs.map(([question, answer]) => (
-            <article key={question} className="rounded-[12px] border border-[#dfd0b5] bg-[#fffaf1] px-4 py-3 shadow-card">
+            <article key={question} className="rounded-[12px] border border-[#dfd0b5] bg-[#fffaf1] px-6 py-5 shadow-card">
               <h3 className="flex items-start gap-2 text-[14px] font-black leading-relaxed text-ink">
                 <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-forest-700 text-[13px] leading-none text-white">Q</span>
                 <span>{question}</span>
@@ -348,25 +369,50 @@ function FAQ() {
 
 function ContactCTA() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-forest-800 py-6 text-white">
-      <div className="lp-container relative z-10 grid gap-4 md:grid-cols-[1.15fr_0.65fr_1fr] md:items-center">
-        <div>
-          <p className="text-[17px] font-black tracking-[0.06em]">まずはお気軽にご相談ください！</p>
-          <a href="tel:09063897137" className="mt-2 block whitespace-nowrap text-[24px] font-black leading-none tracking-[0.03em] sm:text-[28px]">
-            090-6389-7137
-          </a>
-          <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px] font-semibold text-white/80">
-            <span className="whitespace-nowrap">受付時間 7:00〜18:00</span>
-            <span>18:00〜翌7:00は対応できません。</span>
-          </p>
-        </div>
-        <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-[#eadc88] bg-forest-700 text-center font-black leading-relaxed shadow-card">
-          相談・見積り<br />無料
-        </div>
-        <div className="grid gap-3 sm:items-center">
-          <a href="mailto:info@example.com" className="rounded-[15px] border border-[#d6c39f] bg-[#fffaf0] px-5 py-4 text-center font-black text-forest-800 shadow-card transition hover:bg-white">
-            お問い合わせフォームへ進む
-          </a>
+    <section id="contact" className="relative overflow-hidden bg-forest-800 py-8 text-white">
+      <div className="lp-container relative z-10">
+        <div className="grid gap-6 md:grid-cols-[1.15fr_0.65fr_1fr] md:items-start">
+          <div>
+            <p className="text-[17px] font-black tracking-[0.06em]">まずはお気軽にご相談ください！</p>
+            <a href="tel:09063897137" className="mt-2 block whitespace-nowrap text-[24px] font-black leading-none tracking-[0.03em] sm:text-[28px]">
+              090-6389-7137
+            </a>
+            <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px] font-semibold text-white/80">
+              <span className="whitespace-nowrap">受付時間 7:00〜18:00</span>
+              <span>18:00〜翌7:00は対応できません。</span>
+            </p>
+            <div className="mt-4 flex items-center gap-3">
+              <a
+                href="https://www.instagram.com/egunenosenmonka/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-[13px] font-bold text-white transition hover:bg-white/20"
+              >
+                Instagram
+              </a>
+              <a
+                href="mailto:egunenosenmonka@gmail.com"
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-4 py-2 text-[13px] font-bold text-white transition hover:bg-white/20"
+              >
+                メールで相談
+              </a>
+            </div>
+          </div>
+          <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full border border-[#eadc88] bg-forest-700 text-center font-black leading-relaxed shadow-card">
+            相談・見積り<br />無料
+          </div>
+          <div className="grid gap-3">
+            <a href="mailto:egunenosenmonka@gmail.com" className="rounded-[15px] border border-[#d6c39f] bg-[#fffaf0] px-5 py-4 text-center font-black text-forest-800 shadow-card transition hover:bg-white">
+              メールでお問い合わせ
+            </a>
+            <div className="flex items-center gap-4 rounded-[15px] border border-white/30 bg-white/10 p-4">
+              <img src={asset('qr-line.jpg')} alt="LINE QRコード" className="h-[80px] w-[80px] rounded-[8px] object-cover" />
+              <div>
+                <p className="text-[13px] font-black">LINEでも相談受付中</p>
+                <p className="mt-1 text-[12px] font-semibold text-white/75">QRコードを読み取って<br />友だち追加してください</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -383,8 +429,9 @@ function Footer() {
         </div>
         <p className="ja-copy">所在地　岩手県奥州市江刺〇〇〇〇-〇〇　代表者　佐藤 泰</p>
         <div className="flex flex-wrap gap-x-4 gap-y-2">
+          <a href="https://www.instagram.com/egunenosenmonka/" target="_blank" rel="noopener noreferrer" className="hover:text-forest-700">Instagram</a>
+          <a href="mailto:egunenosenmonka@gmail.com" className="hover:text-forest-700">egunenosenmonka@gmail.com</a>
           <a href="#" className="hover:text-forest-700">プライバシーポリシー</a>
-          <a href="#" className="hover:text-forest-700">特定商取引法に基づく表記</a>
         </div>
       </div>
     </footer>
@@ -398,11 +445,11 @@ export default function TaihachiLanding() {
       <main>
         <Hero />
         <Worries />
+        <Works />
         <Services />
         <Process />
         <Area />
         <Voices />
-        <Works />
         <FAQ />
         <ContactCTA />
       </main>
