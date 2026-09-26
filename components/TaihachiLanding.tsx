@@ -1,8 +1,10 @@
 import {
-  ArrowIcon, BrandMark, CedarBranch, CheckIcon, LeafIcon, LogsIcon,
+  ArrowIcon, CedarBranch, CheckIcon, LeafIcon, LogsIcon,
   MailIcon, OrchardIcon, PhoneIcon, RidgeDivider, StumpIcon, TreeIcon, TreeRings,
 } from './ForestArtwork';
 import { Header, ProjectGallery, RevealOnScroll } from './SiteInteractions';
+import BusinessLink from './BusinessLink';
+import Footer from './SiteFooter';
 
 const photo = (name: string) => `/assets/redesign/${name}.webp`;
 const lineUrl = 'https://line.me/ti/p/ugEYvphpWd';
@@ -201,14 +203,9 @@ function Contact() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="site-footer" id="company"><div className="wrap"><div className="footer-top"><div><a href="#top" className="brand footer-brand" aria-label="泰八林業 トップへ"><BrandMark /><span><small>合同会社</small><strong>泰八林業</strong></span></a><p className="footer-address">岩手県奥州市胆沢小山字上中沢168番地<br />代表　菅原 竜太</p><a className="footer-email" href="mailto:egunenosenmonka@gmail.com">egunenosenmonka@gmail.com</a></div><div className="footer-right"><nav aria-label="フッターナビゲーション"><a href="#about">私たちのこと</a><a href="#service">できること</a><a href="#works">施工事例</a><a href="#area">対応エリア</a><a href="#faq">よくあるご質問</a><a href="#contact">お問い合わせ</a></nav><a className="instagram-link" href="https://www.instagram.com/egunenosenmonka/" target="_blank" rel="noopener noreferrer">Instagram<ArrowIcon /></a></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} 合同会社 泰八林業</p><a href="#top">ページの先頭へ<ArrowIcon /></a></div></div></footer>
-  );
-}
 
 export default function TaihachiLanding() {
   return (
-    <div className="site" id="top"><a href="#main" className="skip-link">本文へ移動</a><Header /><main id="main"><Hero /><About /><Services /><Works /><Process /><Area /><FAQ /><Contact /></main><Footer /><div className="mobile-contact"><a href="tel:09063897137"><PhoneIcon /><span>電話で相談<small>7:00–18:00</small></span></a><a href="#contact"><LeafIcon /><span>無料で相談する</span><ArrowIcon /></a></div><RevealOnScroll /></div>
+    <div className="site" id="top"><a href="#main" className="skip-link">本文へ移動</a><Header /><main id="main"><Hero /><About /><Services /><Works /><Process /><Area /><FAQ /><BusinessLink to="akiya" /><Contact /></main><Footer /><div className="mobile-contact"><a href="tel:09063897137"><PhoneIcon /><span>電話で相談<small>7:00–18:00</small></span></a><a href="#contact"><LeafIcon /><span>無料で相談する</span><ArrowIcon /></a></div><RevealOnScroll /></div>
   );
 }

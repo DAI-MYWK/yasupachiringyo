@@ -38,3 +38,33 @@ npm run build
 画像生成のプロンプトと記録は `docs/hero-image-prompt.md` および `docs/asset-prompts-supporting.md`。補助画像のPNG原版は公開対象外の `docs/design-assets/originals/` に保存しています。
 
 電話番号、所在地、代表者、受付時間、対応地域は既存コードの内容を引き継いでいます。元READMEで仮情報の可能性が記載されていたため、公開前に事業者の確認が必要です。裏付けのないお客様の声と未設定のプライバシーポリシーリンクは掲載していません。新しい証言や実績の数字は追加していません。
+
+## 2つの事業ページ（2026-09-26追加）
+
+| 事業 | パス | ページ本体 |
+| --- | --- | --- |
+| 林業・庭木の伐採 | `/` | `components/TaihachiLanding.tsx` |
+| 空き家・空き地管理 | `/akiya/` | `components/VacantPropertyLanding.tsx` |
+
+ヘッダーの事業切り替え・写真付きの別事業案内・フッターから相互に移動できます。
+共通フッターは `components/SiteFooter.tsx`、共通の別事業案内は `components/BusinessLink.tsx`。
+空き家管理の専用スタイルは `app/akiya/akiya.css`、独自の線画は `components/HomeArtwork.tsx`。
+新規画像の生成プロンプト・原本・配信ファイルは `docs/asset-prompts-akiya.md` に記録しています。
+
+### 公開用ファイル
+
+`npm run build` で `out/` に2ページを同時に生成します。
+`out/` **内のファイルとフォルダ一式**を既存ドメインの公開ディレクトリへ配置してください。
+`out/index.html` が林業、`out/akiya/index.html` が空き家管理です。
+`_next/`、`assets/`、`akiya/` 等も含めて配置します。
+以前からある `out.zip` は今回の成果物ではありません。
+
+サイトURLは `https://yasupachiringyo.jp/` を前提にしています。
+変更時は `app/layout.tsx`・`app/sitemap.ts`・`app/robots.ts` のドメインも変更してください。
+ページ別のタイトル・説明・OG画像・canonicalと、2ページのサイトマップを設定済みです。
+今回の作業はローカル実装・静的出力までで、本番へのアップロードは行っていません。
+
+### 料金の確認事項
+
+- 空き家まるごと管理プランの月額は未提示のため、現時点では「個別にお見積り」。
+- オプション価格は依頼文の金額をそのまま反映。税込・税別の扱いは未確認です。公開前に確定してください。

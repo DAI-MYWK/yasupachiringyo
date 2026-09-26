@@ -8,7 +8,11 @@ const nav = [
   ['#area', '対応エリア'], ['#faq', 'よくあるご質問'],
 ];
 
-export function Header() {
+export function Header({ business = 'forestry' }: { business?: 'forestry' | 'akiya' }) {
+  const links = business === 'akiya' ? [
+    ['#about', '私たちの管理'], ['#plan', '管理プラン'], ['#options', '追加サービス'],
+    ['#area', '対応エリア'], ['#faq', 'よくあるご質問'],
+  ] : nav;
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -22,14 +26,14 @@ export function Header() {
   const close = () => dialog.current?.close();
   return (
     <>
-      <header className="site-header">
+      <div className="site-header-shell"><header className="site-header">
         <a className="brand" href="#top" aria-label="合同会社 泰八林業 トップへ"><BrandMark /><span><small>合同会社</small><strong>泰八林業</strong></span></a>
-        <nav className="desktop-nav" aria-label="メインナビゲーション">{nav.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
-        <a className="header-contact" href="#contact"><MailIcon /><span>お問い合わせ</span><ArrowIcon /></a>
+        <nav className="desktop-nav" aria-label="メインナビゲーション">{links.map(([href, label]) => <a key={href} href={href}>{label}</a>)}</nav>
+        <a className="header-contact" href="#contact" aria-label="お問い合わせ"><MailIcon /><span>お問い合わせ</span><ArrowIcon /></a>
         <button className="menu-button" type="button" aria-label="メニューを開く" aria-haspopup="dialog" aria-expanded={open} aria-controls="mobile-menu" onClick={() => { dialog.current?.showModal(); setOpen(true); }}><span /><span /><small>MENU</small></button>
-      </header>
+      </header><nav className="business-nav" aria-label="泰八林業の2つの事業"><span>暮らしを支える、2つの事業</span><a href="/" aria-current={business === 'forestry' ? 'page' : undefined}>林業・庭木の伐採<ArrowIcon /></a><a href="/akiya/" aria-current={business === 'akiya' ? 'page' : undefined}>空き家・空き地管理<ArrowIcon /></a></nav></div>
       <dialog className="menu-dialog" id="mobile-menu" ref={dialog} onClose={() => setOpen(false)} onClick={e => { if (e.target === e.currentTarget) close(); }} aria-labelledby="menu-title">
-        <div className="menu-dialog-inner"><div className="menu-heading"><p id="menu-title">泰八林業</p><button className="close-button" type="button" aria-label="メニューを閉じる" onClick={close}><span /><span /></button></div><nav aria-label="モバイルナビゲーション">{nav.map(([href, label], i) => <a href={href} key={href} onClick={close}><small>0{i + 1}</small>{label}<ArrowIcon /></a>)}</nav><a className="button button-green" href="#contact" onClick={close}>無料で相談する<ArrowIcon /></a><a className="menu-phone" href="tel:09063897137"><PhoneIcon />090-6389-7137</a><p className="menu-hours">受付時間 7:00–18:00</p></div>
+        <div className="menu-dialog-inner"><div className="menu-heading"><p id="menu-title">泰八林業</p><button className="close-button" type="button" aria-label="メニューを閉じる" onClick={close}><span /><span /></button></div><nav aria-label="モバイルナビゲーション">{links.map(([href, label], i) => <a href={href} key={href} onClick={close}><small>0{i + 1}</small>{label}<ArrowIcon /></a>)}</nav><a className="button button-green" href="#contact" onClick={close}>{business === 'akiya' ? '空き家のことを相談する' : '無料で相談する'}<ArrowIcon /></a><a className="menu-phone" href="tel:09063897137"><PhoneIcon />090-6389-7137</a><p className="menu-hours">受付時間 7:00–18:00</p></div>
       </dialog>
     </>
   );
